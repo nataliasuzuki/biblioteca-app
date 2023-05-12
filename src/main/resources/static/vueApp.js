@@ -81,7 +81,6 @@ const mainContainer = {
         },
         getReservas() {
             axios.get(urlReserva).then(response => {
-                console.log(response)
                 response.data.forEach(item => {
                     this.reservas.push({
                         nome: item.nome,
