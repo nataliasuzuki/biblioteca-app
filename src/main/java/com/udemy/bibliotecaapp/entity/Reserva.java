@@ -1,5 +1,6 @@
 package com.udemy.bibliotecaapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,7 +18,8 @@ public class Reserva {
 
     private String codigoInformal;
 
-    @OneToMany(mappedBy = "reserva")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reserva", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Livro> livros;
 
     @ManyToOne

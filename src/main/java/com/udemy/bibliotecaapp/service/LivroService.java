@@ -1,5 +1,7 @@
 package com.udemy.bibliotecaapp.service;
 
+import com.udemy.bibliotecaapp.dto.LivroDTO;
+import com.udemy.bibliotecaapp.dto.LivroReservadoDTO;
 import com.udemy.bibliotecaapp.entity.Livro;
 import com.udemy.bibliotecaapp.exception.IdNaoEncontradoException;
 import com.udemy.bibliotecaapp.repository.LivroRepository;
@@ -14,8 +16,8 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public List<Livro> findAll() {
-        return livroRepository.findAll();
+    public List<LivroDTO> findAll() {
+        return livroRepository.findAllLivros();
     }
 
     public Livro save(Livro livro) {
@@ -35,5 +37,9 @@ public class LivroService {
         }
         livroRepository.deleteById(id);
         return livroRepository.findById(id).isEmpty();
+    }
+
+    public List<LivroReservadoDTO> buscarLivrosReservados() {
+        return livroRepository.findLivrosReservados();
     }
 }

@@ -32,7 +32,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletarUsuario(@PathVariable Long id) {
+    public ResponseEntity removerUsuario(@PathVariable Long id) {
         boolean sucesso = usuarioService.delete(id);
         if(sucesso)
             return new ResponseEntity<>(HttpStatus.OK);

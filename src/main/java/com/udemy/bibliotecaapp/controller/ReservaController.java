@@ -17,22 +17,22 @@ public class ReservaController {
     private ReservaService reservaService;
 
     @GetMapping
-    public ResponseEntity getAll() {
+    public ResponseEntity buscarTodasReservas() {
         return new ResponseEntity<>(reservaService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity save(@Valid @RequestBody Reserva reserva) {
+    public ResponseEntity criarReserva(@Valid @RequestBody Reserva reserva) {
         return new ResponseEntity<>(reservaService.save(reserva), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity put(@Valid @RequestBody Reserva reserva) {
+    public ResponseEntity alterarReserva(@Valid @RequestBody Reserva reserva) {
         return new ResponseEntity<>(reservaService.update(reserva), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity removerReserva(@PathVariable Long id) {
         boolean sucesso = reservaService.delete(id);
         if(sucesso)
             return new ResponseEntity<>(HttpStatus.OK);
