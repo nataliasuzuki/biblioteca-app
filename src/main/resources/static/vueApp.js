@@ -1,6 +1,7 @@
 const { createApp } = Vue
-const baseUrl = "http://localhost:8080/livro"
-const urlReserva = "http://localhost:8080/livro/reservados"
+const urlBuscaLivros = "http://localhost:8080/livro"
+const urlBuscaReservados = "http://localhost:8080/livro/reservados"
+const urlReserva = "http://localhost:8080/reserva"
 const mainContainer = {
     data() {
         return {
@@ -25,10 +26,10 @@ const mainContainer = {
     },
     methods: {
         getLivros() {
-            axios.get(baseUrl).then(response => {
-                    response.data.forEach(item => {
-                        this.livros.push(item)
-                    })
+            axios.get(urlBuscaLivros).then(response => {
+                response.data.forEach(item => {
+                    this.livros.push(item)
+                })
             })
         },
         salvarLivro() {
@@ -56,7 +57,7 @@ const mainContainer = {
 
             const self = this
 
-            axios.post(baseUrl, livro)
+            axios.post(urlBuscaLivros, livro)
                 .then(function(response) {
                     toastr.success('Livro cadastrado com sucesso!', 'Formulário')
                 })
@@ -80,7 +81,7 @@ const mainContainer = {
             this.formLivro.botao = 'Cadastrar'
         },
         getReservas() {
-            axios.get(urlReserva).then(response => {
+            axios.get(urlBuscaReservados).then(response => {
                 response.data.forEach(item => {
                     this.reservas.push({
                         nome: item.nome,
@@ -93,11 +94,22 @@ const mainContainer = {
         formatarData(dataParaSerFormatada) {
             return (new Date(dataParaSerFormatada.split('T')[0])).toLocaleDateString("pt-br")
         },
-        verificaDisponibilidadeDoLivro(obj) {
+        buscaNomeBotao(obj) {
             if(obj == null)
-                return "Sim"
+                return "Reservar"
             else
-                return "Não"
+                return "Reservado"
+        },
+        reservarLivro(obj) {
+            console.log(this.livros)
+            axios.post(urlReserva, {livros:[{id:2}]}, {
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(response => {
+                this.setState({data:response.data});
+                console.log('nati'+this.state.data);
+            })
         }
     }
 }
