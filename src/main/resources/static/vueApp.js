@@ -1,7 +1,7 @@
 const { createApp } = Vue
 const urlBuscaLivros = "http://localhost:8080/livro"
 const urlBuscaReservados = "http://localhost:8080/livro/reservados"
-const urlReserva = "http://localhost:8080/reserva"
+const urlBuscaReservas = "http://localhost:8080/reserva"
 const mainContainer = {
     data() {
         return {
@@ -43,6 +43,8 @@ const mainContainer = {
 
             if(this.formLivro.nome == '') {
                 toastr.error('O campo nome é obrigatório!', 'Formulário')
+                const self = this
+                self.getLivros()
                 return
             }
 
@@ -92,7 +94,7 @@ const mainContainer = {
             })
         },
         formatarData(dataParaSerFormatada) {
-            return (new Date(dataParaSerFormatada.split('T')[0])).toLocaleDateString("pt-br")
+            return (new Date(dataParaSerFormatada.split('T')[0])).toLocaleDateString("pt-br", {timeZone: 'UTC'})
         },
         buscaNomeBotao(obj) {
             if(obj == null)
@@ -101,15 +103,18 @@ const mainContainer = {
                 return "Reservado"
         },
         reservarLivro(obj) {
-            console.log(this.livros)
-            axios.post(urlReserva, {livros:[{id:2}]}, {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            }).then(response => {
-                this.setState({data:response.data});
-                console.log('nati'+this.state.data);
-            })
+            if(obj.reservaId == null) {
+                this.reservas = []
+                this.livros = []
+                const self2 = this
+                axios.post(urlBuscaReservas, {livros:[{id:obj.id}]}).then(function() {
+                    self2.getReservas()
+                    self2.getLivros()
+                })
+            }
+            else {
+                toastr.warning('Este livro já foi reservado.', 'Aviso')
+            }
         }
     }
 }
