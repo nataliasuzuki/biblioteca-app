@@ -2,17 +2,23 @@ package com.udemy.bibliotecaapp.service;
 
 import com.udemy.bibliotecaapp.entity.Livro;
 import com.udemy.bibliotecaapp.entity.Reserva;
+import com.udemy.bibliotecaapp.entity.Usuario;
 import com.udemy.bibliotecaapp.exception.IdNaoEncontradoException;
 import com.udemy.bibliotecaapp.repository.LivroRepository;
 import com.udemy.bibliotecaapp.repository.ReservaRepository;
+import com.udemy.bibliotecaapp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
+@Transactional
 public class ReservaService {
 
     @Autowired
@@ -21,28 +27,36 @@ public class ReservaService {
     @Autowired
     private LivroRepository livroRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public List<Reserva> findAll() {
         return reservaRepository.findAll();
     }
 
     public Reserva save(Reserva reserva) {
-        reserva.setDataReserva(ZonedDateTime.now());
-        reserva.setDataDevolucao(calcularPrazoDevolucao());
+        ZonedDateTime dataAtual = ZonedDateTime.now();
+        reserva.setDataReserva(dataAtual);
+        reserva.setDataDevolucao(dataAtual.plusDays(7));
+
+        Random random = new Random();
+        int rnd = random.hashCode();
+        reserva.setCodigoInformal(String.valueOf(rnd));
+
+        List<Livro> livros = reserva.getLivros();
+        Optional<Usuario> usuario = usuarioRepository.findById(Long.valueOf(1));
+        reserva.setUsuario(usuario.get());
+        reserva.setLivros(new ArrayList<>());
         Reserva reservaSalvo = reservaRepository.save(reserva);
 
-        List<Livro> livros = reservaSalvo.getLivros();
         for(Livro livro : livros) {
-            Optional<Livro> produtoOptional = livroRepository.findById(livro.getId());
-            if(produtoOptional.isPresent()) {
-                produtoOptional.get().setReserva(reservaSalvo);
-                livroRepository.save(produtoOptional.get());
+            Optional<Livro> livroOptional = livroRepository.findById(livro.getId());
+            if(livroOptional.isPresent()) {
+                livroOptional.get().setReserva(reservaSalvo);
+                livroRepository.save(livroOptional.get());
             }
         }
         return reservaSalvo;
-    }
-
-    private ZonedDateTime calcularPrazoDevolucao() {
-        return ZonedDateTime.now().plusDays(7);
     }
 
     public Reserva update(Reserva reserva) {
