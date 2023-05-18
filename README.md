@@ -14,4 +14,4 @@
 - Postman v10.13.5
 
 #### Visualização
-![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/66542acc-db0a-4afb-9905-7b3b37027cf8)
+![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/9c2e7371-7472-4eea-8574-ab11df7e1cf2)
