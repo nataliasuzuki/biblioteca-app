@@ -14,6 +14,12 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String login;
+
+    @Column(nullable = false)
+    private String senha;
+
     private String nome;
 
     @Column(name = "data_nascimento")
