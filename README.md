@@ -1,6 +1,6 @@
 ## biblioteca-app :books:
 
-#### O que é possível fazer nesta API?
+#### O que é possível fazer neste aplicativo?
 - Cadastrar livros, reservas e usuários
 - Editar livros, reservas e usuários
 - Remover livros, reservas e usuários
