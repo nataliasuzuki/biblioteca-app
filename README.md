@@ -14,6 +14,10 @@
 - Banco de dados MySQL
 - Postman v10.13.5
 
+#### Endpoints
+Todos os endpoints podem ser acessados pelo Postman, utilizando o arquivo json que está na path: _src/main/resources/templates/Biblioteca App.postman_collection.json_ .
+![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/24ae3bca-50c7-4ab1-9646-154510b622f9)
+
 #### Autenticação
 É possível utilizar a dependência do próprio spring para ter uma autenticação simples no projeto. Esta autenticação consiste em um usuário padrão e uma senha pré-definida.
 Para utilizar essa autenticação, basta incluir a seguinte dependência no arquivo *pom.xml*:
