@@ -4,6 +4,7 @@
 - Cadastrar livros, reservas e usuários
 - Editar livros, reservas e usuários
 - Remover livros, reservas e usuários
+- Devolver livros
 
 #### :computer: Recursos utilizados:
 
@@ -31,4 +32,5 @@ O usuário padrão é *user* e a senha aparece no console da IDE:
 No projeto atual, optei por uma autenticação customizada, onde é validado o usuário e senha registrados no banco de dados. A primeira tela que será apresentada ao acessar http://localhost:8080 será:
 ![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/bed056ac-9cc6-4f4b-bcfc-2107762a5885)
 
-![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/9c2e7371-7472-4eea-8574-ab11df7e1cf2)
+Após autenticado, a página inicial será apresentada:
+![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/303782c7-5fdf-4cad-b435-02fef539f3cc)
