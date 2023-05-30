@@ -59,5 +59,11 @@ Tela do método de autenticação do próprio spring:
 O usuário padrão é ***user*** e a senha aparece no console da IDE:
 ![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/9874e263-abc1-46a4-b79e-f35939fbd9fa)
 
+### Executar Biblioteca App
+Para executar o sistema na sua máquina, seguir os seguintes passos:
+1. fazer o download deste projeto em algum diretório local,
+2. abrir algum terminal de comando da sua máquina (Prompt de Comando, Windows PowerShell)
+3. executar o comando: ```mvn clean package```. O arquivo _**bibliotecaApp-0.0.1-SNAPSHOT.jar**_ será gerado na pasta _**target**_ do projeto,
+
 ### Página inicial da Biblioteca App
 ![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/303782c7-5fdf-4cad-b435-02fef539f3cc)
