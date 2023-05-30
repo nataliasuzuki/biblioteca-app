@@ -7,7 +7,9 @@ import com.udemy.bibliotecaapp.exception.IdNaoEncontradoException;
 import com.udemy.bibliotecaapp.repository.LivroRepository;
 import com.udemy.bibliotecaapp.repository.ReservaRepository;
 import com.udemy.bibliotecaapp.repository.UsuarioRepository;
+import com.udemy.bibliotecaapp.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,8 +46,7 @@ public class ReservaService {
         reserva.setCodigoInformal(String.valueOf(rnd));
 
         List<Livro> livros = reserva.getLivros();
-        Optional<Usuario> usuario = usuarioRepository.findById(Long.valueOf(1));
-        reserva.setUsuario(usuario.get());
+        reserva.setUsuario(getUserAuthenticated());
         reserva.setLivros(new ArrayList<>());
         Reserva reservaSalvo = reservaRepository.save(reserva);
 
@@ -57,6 +58,11 @@ public class ReservaService {
             }
         }
         return reservaSalvo;
+    }
+
+    public Usuario getUserAuthenticated() {
+        UserPrincipal principal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return usuarioRepository.findByLogin(principal.getUsername());
     }
 
     public Reserva update(Reserva reserva) {
