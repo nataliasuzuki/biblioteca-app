@@ -2,6 +2,7 @@ const { createApp } = Vue
 const urlBuscaLivros = "http://localhost:8080/livro"
 const urlBuscaReservados = "http://localhost:8080/livro/reservados"
 const urlBuscaReservas = "http://localhost:8080/reserva"
+const urlDevolverLivro = "http://localhost:8080/livro/devolver/"
 const mainContainer = {
     data() {
         return {
@@ -100,7 +101,7 @@ const mainContainer = {
             if(obj == null)
                 return "Reservar"
             else
-                return "Reservado"
+                return "Devolver"
         },
         reservarLivro(obj) {
             if(obj.reservaId == null) {
@@ -111,9 +112,17 @@ const mainContainer = {
                     self2.getReservas()
                     self2.getLivros()
                 })
+                toastr.success('Livro reservado com sucesso!')
             }
             else {
-                toastr.warning('Este livro já foi reservado.', 'Aviso')
+                this.reservas = []
+                this.livros = []
+                const self3 = this
+                axios.put(urlDevolverLivro + obj.id).then(function() {
+                    self3.getReservas()
+                    self3.getLivros()
+                })
+                toastr.success('Livro devolvido com sucesso!')
             }
         }
     }

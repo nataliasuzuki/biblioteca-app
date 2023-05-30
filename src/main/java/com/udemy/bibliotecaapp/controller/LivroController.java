@@ -51,4 +51,13 @@ public class LivroController {
         else
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PutMapping("/devolver/{id}")
+    public ResponseEntity devolverLivro(@PathVariable Long id) {
+        boolean sucesso = livroService.devolverLivro(id);
+        if(sucesso)
+            return new ResponseEntity<>(HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

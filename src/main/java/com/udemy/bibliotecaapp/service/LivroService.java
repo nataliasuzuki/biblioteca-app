@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LivroService {
@@ -41,5 +42,16 @@ public class LivroService {
 
     public List<LivroReservadoDTO> buscarLivrosReservados() {
         return livroRepository.findLivrosReservados();
+    }
+
+    public boolean devolverLivro(Long id) {
+        Optional<Livro> livroOptional = livroRepository.findById(id);
+        if(livroOptional.isEmpty()) {
+            throw new IdNaoEncontradoException("ID não encontrado!");
+        }
+        Livro livro = livroOptional.get();
+        livro.setReserva(null);
+        livroRepository.save(livro);
+        return livro.getReserva() == null;
     }
 }
