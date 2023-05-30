@@ -1,5 +1,5 @@
 # :books: Biblioteca App
-Biblioteca App é um pequeno sistema que simula um gerenciamento de uma biblioteca, como o cadastro de livros, reservas e devoluções. Possui autenticação síncrona com o banco de dados, ou seja, é necessário que o usuário esteja previamente cadastrado no banco de dados para conseguir visualizar a página inicial da Biblioteca App. A Biblioteca App é executada no endereço http://localhost.
+Biblioteca App é um pequeno sistema que simula um gerenciamento de uma biblioteca, como o cadastro de livros, reservas e devoluções. Possui autenticação síncrona com o banco de dados, ou seja, é necessário que o usuário esteja previamente cadastrado no banco de dados para conseguir visualizar a página inicial da Biblioteca App. A Biblioteca App é executada no endereço http://localhost:8080.
 
 ### Funcionalidades do sistema
 - Cadastrar livros, reservas e usuários
