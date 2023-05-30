@@ -59,12 +59,24 @@
                         <input type="text" class="form-control" v-model="formLivro.editora"/>
                     </div>
                     <div class="form-group">
-                        <label>Gênero</label>
-                        <input type="text" class="form-control" v-model="formLivro.genero"/>
+                        <label for="generos">Gênero</label>
+                        <select class="form-control" v-model="formLivro.genero" name="generos" id="generos">
+                            <option value="ACAO">Ação</option>
+                            <option value="ROMANCE">Romance</option>
+                            <option value="TERROR">Terror</option>
+                            <option value="SUSPENSE">Suspense</option>
+                            <option value="FICCAO_CIENTIFICA">Fição científica</option>
+                            <option value="INVESTIGACAO_POLICIAL">Investigação policial</option>
+                            <option value="AUTO_CONHECIMENTO">Auto conhecimento</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Idioma</label>
-                        <input type="text" class="form-control" v-model="formLivro.idioma"/>
+                        <label for="idiomas">Idioma</label>
+                        <select class="form-control" v-model="formLivro.idioma" name="idiomas" id="idiomas">
+                            <option value="PORTUGUES">Português</option>
+                            <option value="INGLES">Inglês</option>
+                            <option value="ESPANHOL">Espanhol</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Páginas</label>
