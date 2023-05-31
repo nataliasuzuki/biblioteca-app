@@ -62,6 +62,3 @@ Para executar o sistema na sua máquina, seguir os seguintes passos:
 5. executar o comando ```java -jar bibliotecaApp-0.0.1-SNAPSHOT.jar```,
 6. aguardar pela mensagem ```Started BibliotecaAppApplication in n seconds```,
 7. acessar o endereço http://localhost:8080. Enquanto o terminal de comando estiver aberto, a aplicação ficará em execução, caso contrário, a aplicação será encerrada.
-
-### Página inicial da Biblioteca App
-![image](https://github.com/nataliasuzuki/biblioteca-app/assets/61856025/303782c7-5fdf-4cad-b435-02fef539f3cc)
