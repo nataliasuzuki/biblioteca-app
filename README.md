@@ -55,10 +55,10 @@ O usuário padrão é ***user*** e a senha aparece no console da IDE desta forma
 
 ### Executar Biblioteca App usando arquivo jar
 Para executar o sistema na sua máquina, seguir os seguintes passos:
-1. fazer o download deste projeto em algum diretório local,
-2. abrir algum terminal de comando da sua máquina (Prompt de Comando, Windows PowerShell),
-3. executar o comando ```mvn clean package```. O arquivo _**bibliotecaApp-0.0.1-SNAPSHOT.jar**_ será gerado na pasta _**target**_ do projeto,
-4. acessar esse diretório que se encontra o .jar gerado,
-5. executar o comando ```java -jar bibliotecaApp-0.0.1-SNAPSHOT.jar```,
-6. aguardar pela mensagem ```Started BibliotecaAppApplication in n seconds```,
-7. acessar o endereço http://localhost:8080. Enquanto o terminal de comando estiver aberto, a aplicação ficará em execução, caso contrário, a aplicação será encerrada.
+1. Fazer o download deste projeto em algum diretório local,
+2. Abrir algum terminal de comando da sua máquina (Prompt de Comando, Windows PowerShell),
+3. Executar o comando ```mvn clean package```,
+4. Executar o comando ```cd target```,
+5. Executar o comando ```java -jar bibliotecaApp-0.0.1-SNAPSHOT.jar```,
+6. Aguardar pela mensagem ```Started BibliotecaAppApplication in n seconds```,
+7. Acessar o endereço http://localhost:8080. Enquanto o terminal de comando estiver aberto, a aplicação ficará em execução, caso contrário, a aplicação será encerrada.
